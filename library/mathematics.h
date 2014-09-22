@@ -10,6 +10,9 @@ namespace wens{
 	//Sieve of Eratosthenes
 	//筛法求素数
 	void shaifa_prime(int *a, int size);
+    
+    //bit shift to sqrt
+    int sqrt(int v);
 
 }
 

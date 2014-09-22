@@ -14,45 +14,48 @@
 
 using namespace std;
 
-vector<int> spiral_output_matrix(vector<vector<int>> const &v)
+namespace wens
 {
-    vector<int> result;
-    assert(v.size() != 0);
-    
-    int rowlen = v.size() ;
-    int columnlen = v[0].size();
-    
-    int beginx = 0, endx = rowlen - 1;
-    int beginy = 0, endy = columnlen - 1;
-    
-    //do spiral output
-    while (true) {
-        //from top - right
-        for (int i = beginx; i <= endx; ++i) {
-            result.push_back(v[i][beginy]);
-        }
-        if (++beginy > endy)  break;
+    vector<int> spiral_output_matrix(vector<vector<int>> const &v)
+    {
+        vector<int> result;
+        assert(v.size() != 0);
         
-        //from right - bottom
-        for (int i = beginy; i <= endy; ++i) {
-            result.push_back(v[endx][i]);
-        }
-        if (--endx < beginx)  break;
+        int rowlen = v[0].size() ;
+        int columnlen = v.size();
         
-        //from bottom - left
-        for (int i = endx; i >= beginx; --i) {
-            result.push_back(v[i][endy]);
-        }
-        if (--endy < beginy)  break;
+        int beginx = 0, endx = rowlen - 1;
+        int beginy = 0, endy = columnlen - 1;
         
-        //from left - top
-        for (int i = endy; i >= beginy; --i) {
-            result.push_back(v[beginx][i]);
+        //do spiral output
+        while (true) {
+            //from top - right
+            for (int i = beginx; i <= endx; ++i) {
+                result.push_back(v[beginy][i]);
+            }
+            if (++beginy > endy)  break;
+            
+            //from right - bottom
+            for (int i = beginy; i <= endy; ++i) {
+                result.push_back(v[i][endx]);
+            }
+            if (--endx < beginx)  break;
+            
+            //from bottom - left
+            for (int i = endx; i >= beginx; --i) {
+                result.push_back(v[endy][i]);
+            }
+            if (--endy < beginy)  break;
+            
+            //from left - top
+            for (int i = endy; i >= beginy; --i) {
+                result.push_back(v[i][beginx]);
+            }
+            if (++beginx > endx)  break;
         }
-        if (++beginx > endx)  break;
+        
+        return  result;
+        
+        
     }
-    
-    return  result;
-    
-    
 }

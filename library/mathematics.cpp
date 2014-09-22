@@ -73,6 +73,27 @@ namespace wens{
     
 	    return gcd(b, a%b);
 	}
+   
+
+    int sqrt(int v)
+    {
+        long long ans = 0;
+        int bits = 1 << 16;
+        
+        while (bits > 0)
+        {
+            ans |= bits;
+            
+            if (ans * ans > v)
+            {
+                ans ^= bits;
+            }
+            
+            bits >>= 1;
+        }
+       
+        return (int)ans;
+    }
 	
 }
 
